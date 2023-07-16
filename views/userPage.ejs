@@ -3,9 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
     <title>HELLO</title>
+    <script src="https://kit.fontawesome.com/d9727b2f96.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/user.css">
 </head>
 <body>
-    
+    <div id="todo">
+        <div id="todoTitle">
+            <span><i class="fa-solid fa-house" style="font-size: 2.7rem;"></i></span>
+            <span> &nbsp To do</span>
+        </div>
+        <div class="white-border"></div>
+        <div id="taskArea">
+            <ul id="taskUl">
+                <!-- Do add try making some tasks to see them here line when completed  -->
+                <li>
+                    <input type="checkbox" id="rtsaasrt"  data-id="taskid" class="custom-checkbox">
+                    <label for="rtsaasrt">Description of the task goes here</label>
+                    <span class = 'category'>Personel</span>
+                    <br>   
+                    <span><i class="fa-solid fa-calendar-days"></i> Due Date</span>
+                </li>
+                <li>
+                    <input type="checkbox" id="oysranoa"  data-id="askid" class="custom-checkbox">
+                    <label for="oysranoa">Description of the task goes here</label>
+                    <span class = 'category'>Personel</span>
+                    <br>  
+                    <span><i class="fa-solid fa-calendar-days"></i> Due Date</span>
+                </li>
+            </ul>
+        </div>
+        <div class="white-border"></div>
+        <div id="taskHandler">
+            <button><i class="fa-solid fa-plus"></i> Create Task</button>
+            <button><i class="fa-solid fa-trash" style="color: #000000;"></i> Delete Task</button>
+        </div>
+        <div id="taskForm">
+            <input placeholder="Add a task" class="add-task" id="addDescription" data-helloWord="asdasdas"/>
+            <label for="myField">Select an option:</label>
+            <select id="myField" name="myField">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            </select>
+            <label for="dueDate">Due date:</label>
+            <input type="date" id="dueDate" name="dueDate" placeholder="Due date">
+        </div>
+    </div>
 </body>
-</html>
+</html> 
