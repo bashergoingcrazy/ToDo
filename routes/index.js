@@ -10,7 +10,6 @@ router.use('/user',require('./users.js'));
 
 
 
-
 //Exporting our created routes 
 module.exports = router;
 

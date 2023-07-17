@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
-    <title>HELLO</title>
+    <title><%= locals.title %></title>
     <script src="https://kit.fontawesome.com/d9727b2f96.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/user.css">
 </head>
@@ -12,44 +12,87 @@
     <div id="todo">
         <div id="todoTitle">
             <span><i class="fa-solid fa-house" style="font-size: 2.7rem;"></i></span>
-            <span> &nbsp To do</span>
+            <span>  To do</span>
         </div>
         <div class="white-border"></div>
         <div id="taskArea">
             <ul id="taskUl">
                 <!-- Do add try making some tasks to see them here line when completed  -->
-                <li>
+                <% let y = 0 %>
+                <% const doneTasks = []; %>
+                <% const pendingTasks = []; %>
+                <% for (let key in todo_list) { %>
+                    <% let todo = todo_list[key]; %>
+                    <% if (todo.isDone) { %>
+                        <% doneTasks.push(todo); %>
+                    <% } else { %>
+                        <% pendingTasks.push(todo); %>
+                    <% } %>
+                <% } %>
+                <% for(let todo of pendingTasks.concat(doneTasks)) { %>
+                    <li id="<%= todo._id %>">
+                        <input type="checkbox" id="box<%= y %>" data-id="taskid" class="custom-checkbox " value="<%= todo.isDone %>" <% if(todo.isDone){ %> checked <% } %>>
+                        <label for="box<%= y %>"><%= todo.description %></label>
+                        <span class="category"><%= todo.category %></span>
+                        <br>
+                        <span class="calender"><i class="fa-solid fa-calendar-days"></i><%= todo.dueDate.toLocaleDateString('en-GB') %></span>
+                        <% y = y + 1 %>
+                    </li>
+                <% } %>
+                
+              
+            </ul>
+            <!-- <li>
                     <input type="checkbox" id="rtsaasrt"  data-id="taskid" class="custom-checkbox">
                     <label for="rtsaasrt">Description of the task goes here</label>
-                    <span class = 'category'>Personel</span>
+                    <span class = 'category'>Personal</span>
                     <br>   
-                    <span><i class="fa-solid fa-calendar-days"></i> Due Date</span>
+                    <span class="calender"><i class="fa-solid fa-calendar-days"></i> Due Date</span>
                 </li>
                 <li>
-                    <input type="checkbox" id="oysranoa"  data-id="askid" class="custom-checkbox">
-                    <label for="oysranoa">Description of the task goes here</label>
-                    <span class = 'category'>Personel</span>
-                    <br>  
-                    <span><i class="fa-solid fa-calendar-days"></i> Due Date</span>
+                    <input type="checkbox" id="vansh"  data-id="taskid" class="custom-checkbox">
+                    <label for="vansh">Description of the task goes here</label>
+                    <span class = 'category'>Personal</span>
+                    <br>   
+                    <span class="calender"><i class="fa-solid fa-calendar-days"></i> Due Date</span>
                 </li>
-            </ul>
+                -->
         </div>
         <div class="white-border"></div>
         <div id="taskHandler">
-            <button><i class="fa-solid fa-plus"></i> Create Task</button>
-            <button><i class="fa-solid fa-trash" style="color: #000000;"></i> Delete Task</button>
+            <button id="createTaskButton"><i class="fa-solid fa-plus"></i>Create Task</button>
+            <button id="deleteButton" style="background-color: lightcoral;"><i class="fa-solid fa-trash" style="color: #000000;"></i>Delete Task</button>
         </div>
         <div id="taskForm">
-            <input placeholder="Add a task" class="add-task" id="addDescription" data-helloWord="asdasdas"/>
-            <label for="myField">Select an option:</label>
-            <select id="myField" name="myField">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            </select>
-            <label for="dueDate">Due date:</label>
-            <input type="date" id="dueDate" name="dueDate" placeholder="Due date">
-        </div>
+            <form action="/user/create-todo" id="createForm" method="post">
+                <div class="input-wrapper">
+                    <input placeholder="Add a task" class="add-task" name="description" id="addDescription" data-helloWord="asdasdas">
+                  </div>
+                  <div class="input-wrapper sideBar">
+                    <label for="myField">Category:</label>
+                    <select id="myField" name="category">
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Others">Others</option>
+                    </select>
+                  </div>
+                  <div class="input-wrapper sideBar">
+                    <label for="dueDate">Due date:</label>
+                    <input type="date" id="dueDate" name="dueDate" placeholder="Due date">
+                  </div>
+                </div>
+            </form>
     </div>
+    <!-- for random background image each time -->
+    <script src="/js/background.js"></script>
+    <!-- for disabling the dates previous to current date -->
+    <script src="/js/disableDates.js"></script>
+
+    <script src="/js/createTodo.js"></script>
+
+    <script src="/js/toggleTodo.js"></script>
+    <script src="/js/deleteTasks.js"></script>
 </body>
 </html> 
